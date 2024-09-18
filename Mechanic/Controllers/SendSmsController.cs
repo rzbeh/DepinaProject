@@ -40,7 +40,7 @@ namespace Mechanic.Controllers
 
             if (user == null || user.Serial == 0)
             {
-                return NotFound("No serial number found for this phone number.");
+                return NotFound("برای شماره شما سریالی یافت نشد");
             }
 
             try
@@ -48,7 +48,7 @@ namespace Mechanic.Controllers
                 // Create the SOAP client instance (generated from the WSDL)
                 using (var soapClient = new SendSoapClient(SendSoapClient.EndpointConfiguration.SendSoap))
                 {
-                    var text = $"Your serial number is: {user.Serial}";
+                    var text = $" {user.Serial}";
 
                     // Call the SMS service to send the serial number to the user's phone
                     var result = await soapClient.SendByBaseNumber2Async(_username, _password, text, request.PhoneNumber, _bodyId);
@@ -56,11 +56,11 @@ namespace Mechanic.Controllers
 
                     if (!string.IsNullOrEmpty(result)) // Assuming a positive result means success
                     {
-                        return Ok("Serial number sent via SMS successfully.");
+                        return Ok("سریال برای شماره وارد شده ارسال شد");
                     }
                     else
                     {
-                        return StatusCode(500, "Failed to send SMS.");
+                        return StatusCode(500, "سریال ارسال نشد");
                     }
                 }
             }

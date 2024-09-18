@@ -1,0 +1,16 @@
+# Ignore Visual Studio temporary files, build results, and
+# other files related to Visual Studio
+.vs/
+*.user
+*.suo
+*.cache
+*.log
+*.pdb
+bin/
+obj/
+
+# Ignore the temporary build results
+**/[Dd]ebug/
+**/[Rr]elease/
+**/[Xx]64/
+**/[Xx]86/
